@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Websocket Test</title>
+</head>
+<body>
+    <center>
+      <h1 style="margin-top:200px;">Websocket Test</h1>
+      <p id="demo" style="font-size:50px;"></p>
+    </center>
+    
+    <script type="text/javascript">
+        var ws = new WebSocket('ws://localhost:8000');
+        var display = document.getElementById('demo');
+        ws.onopen = function() {
+            ws.send('Connection established...'); 
+        };
+        ws.onmessage = function(event) {
+            var msg = event.data;
+            display.innerHTML = msg;
+        };
+        ws.onclose = function() { 
+            display.innerHTML = "Connection closed...";
+        };
+    </script>
+</body>
+</html>
